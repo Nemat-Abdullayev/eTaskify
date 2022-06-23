@@ -7,7 +7,7 @@ app:
 
 spring:
   datasource:
-    url: jdbc:postgresql://10.15.20.91:5432/mydb
+    url: bla bla
     username: nemat
     password: Az123123
     driver-class-name: org.postgresql.Driver
