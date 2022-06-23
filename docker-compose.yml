@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  APP:
+    container_name: 'etaskify'
+    image: 'etaskify'
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - Postgres
+  Postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=postgres
