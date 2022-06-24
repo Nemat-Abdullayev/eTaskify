@@ -57,16 +57,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/e-taskify/api/v1/organization").permitAll()
                 .antMatchers("/e-taskify/api/v1/auth/authenticate").permitAll()
-                .antMatchers("/console/**").permitAll()
-                .antMatchers("/h2/**").permitAll()
                 .antMatchers(HttpMethod.GET,
                         AUTH_LIST).permitAll()
                 .anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-        //must be deleteds
-        http.headers().frameOptions().disable();
     }
 
     @Autowired

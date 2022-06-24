@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class ETaskifyApplication implements CommandLineRunner {
@@ -21,23 +23,13 @@ public class ETaskifyApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Role roleAdmin = Role.builder()
-                .name(RoleName.ADMIN)
-                .active(true)
-                .build();
+        Role roleAdmin = Role.builder().name(RoleName.ADMIN).active(true).build();
 
-        Role roleManager = Role.builder()
-                .name(RoleName.MANAGER)
-                .active(true)
-                .build();
+        Role roleManager = Role.builder().name(RoleName.MANAGER).active(true).build();
 
-        Role roleUser = Role.builder()
-                .name(RoleName.USER)
-                .active(true)
-                .build();
+        Role roleUser = Role.builder().name(RoleName.USER).active(true).build();
 
-
-
-//        roleRepository.saveAll(List.of(roleAdmin, roleManager, roleUser));
+        List<Role> roles = roleRepository.findAll();
+        if (roles.isEmpty()) roleRepository.saveAll(List.of(roleAdmin, roleManager, roleUser));
     }
 }
